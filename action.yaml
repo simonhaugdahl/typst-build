@@ -1,0 +1,22 @@
+name: Github Action for Typst
+author: Simon Haugdahl
+
+inputs:
+  source_file:
+    description: >
+      The typst file to be compiled. There can be multiple ones separated by new lines.
+    required: true
+  options:
+    description: >
+      Line separated array of global options to pass to typst. Compared to a CLI call, with space
+      separated field, each file must be on its own lines.
+
+
+    required: false
+    default: ""
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.source_file }}
+    - ${{ inputs.options }}
